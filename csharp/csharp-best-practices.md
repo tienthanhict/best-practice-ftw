@@ -61,7 +61,6 @@ With LINQ, source code will be:
 - Shorter, readable, 
 - Focus on what you want than how to do
 - Prevent unexpected side-effects to source collection
-- Performance is better in most cases
 
 :-1:__Bad practice__
 ```C#
@@ -116,6 +115,35 @@ public IfrsLinkDataInfo GetLinkData(int id)
 }
 
 ```
+
+# Const vs static readonly
+__Const:__
+ - Must be initialized
+ - Initialization must be at compile time
+ - Faster
+ - Client assembly must re-compile if const value changes
+
+When use:
+ - Value never changes: Zero (0), Number days of a week (7), Int32.MaxValue (0x7FFFFFFF)
+ - Modifier is: private, internal
+
+__Static readonly:__
+ - Can use default value, without initializing
+ - Initialization can be at run time
+
+ When use:
+  - Condition to use const does not meet.
+
+```C#
+// In .NET Framework
+public class string
+{
+    public static readonly string Empty;
+    ....
+}
+
+```
+
 
 
 
